@@ -5,7 +5,9 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # Copy the Python application file into the container
-COPY Method\ Numeric\ Calculator.py /app/
+ARG src="Method Numeric Calculator.py"
+ARG target="app/"
+COPY ${src} ${target}
 
 # Run the Python application
 CMD ["python", "Method Numeric Calculator.py"]
