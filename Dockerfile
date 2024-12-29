@@ -1,11 +1,11 @@
-# image Python resmi
+# Use the official Python image from Docker Hub
 FROM python:3.11-slim
 
-# Set working directory di dalam container
+# Set the working directory inside the container
 WORKDIR /app
 
-# Salin file aplikasi Python ke dalam container
-COPY 'Method Numeric Calculator.py'/app/
+# Copy the Python application file into the container
+COPY Method\ Numeric\ Calculator.py /app/
 
-# Jalankan aplikasi Python
+# Run the Python application
 CMD ["python", "Method Numeric Calculator.py"]
