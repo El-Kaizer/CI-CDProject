@@ -9,7 +9,7 @@ pipeline {
     stages {
 	stage('Test Docker Login') {
     		steps {
-        		bat "docker login -u %DOCKER_USERNAME -p %DOCKER_PASSWORD https://index.docker.io/v1/"
+        		bat "docker login -u ${env.DOCKER_HUB_CREDENTIALS_USR} -p ${env.DOCKER_HUB_CREDENTIALS_PSW} https://index.docker.io/v1/"
     		}
 	}
 
