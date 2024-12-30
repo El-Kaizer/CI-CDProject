@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_HUB_CREDENTIALS = credentials('mTH0YpM3VL8KoK_WzvyjEr3g4C4') // ID kredensial Docker Hub di Jenkins
+        DOCKER_HUB_CREDENTIALS = credentials('dckr_pat_mTH0YpM3VL8KoK_WzvyjEr3g4C4') // ID kredensial Docker Hub di Jenkins
         IMAGE_NAME = "akramdaffa/ci-cdproject" // Ganti dengan nama Docker Hub Anda
 	DOCKER_USERNAME = "akramdaffa"
 	DOCKER_PASSWORD = "KsD@D237569!!"
