@@ -12,9 +12,9 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh """
-                docker build -t ${IMAGE_NAME}:${env.BUILD_NUMBER} .
-                docker tag ${IMAGE_NAME}:${env.BUILD_NUMBER} ${IMAGE_NAME}:latest
+                bat """
+                docker build -t %IMAGE_NAME%:%BUILD_NUMBER% .
+                docker tag %IMAGE_NAME%:%BUILD_NUMBER% %IMAGE_NAME%:latest
                 """
             }
         }
@@ -22,20 +22,21 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', DOCKER_HUB_CREDENTIALS) {
-                        sh "docker push ${IMAGE_NAME}:latest"
-                        sh "docker push ${IMAGE_NAME}:${env.BUILD_NUMBER}"
+                        bat "docker push %IMAGE_NAME%:latest"
+                        bat "docker push %IMAGE_NAME%:%BUILD_NUMBER%"
                     }
                 }
             }
         }
         stage('Deploy Application') {
             steps {
-                sh """
-                docker stop ci-cdproject || true
-                docker rm ci-cdproject || true
-                docker run -d --name ci-cdproject -p 8089:3000 ${IMAGE_NAME}:latest
+                bat """
+                docker stop ci-cdproject || exit 0
+                docker rm ci-cdproject || exit 0
+                docker run -d --name ci-cdproject -p 8089:3000 %IMAGE_NAME%:latest
                 """
             }
         }
     }
 }
+
